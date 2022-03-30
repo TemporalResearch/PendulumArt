@@ -1,0 +1,14 @@
+add_library(dop_src_all
+        dop/render/scenes/SinglePendulum.cpp
+        dop/render/shapes/CenteredCircle.cpp
+        dop/render/shapes/Line.cpp
+        )
+target_link_libraries(dop_src_all
+        PUBLIC libtr_lang::libtr_lang
+        PUBLIC libcpp_logger::libcpp_logger
+        PUBLIC sfml-graphics
+        PUBLIC sfml-window
+        PUBLIC sfml-system
+        )
+target_include_directories(dop_src_all
+        PUBLIC ./)

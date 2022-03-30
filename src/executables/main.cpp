@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <dop/render/scenes/SinglePendulum.h>
+#include "dop/render/scenes/DoublePendulum.h"
 
 int main()
 {
@@ -16,8 +17,9 @@ int main()
             {-1, -1},
             {2, 2})));
 
-    dop::SinglePendulum singlePendulum;
+    dop::DoublePendulum singlePendulum(10);
 
+//    window.clear(sf::Color::Green);
     while (window.isOpen())
     {
         // check all the window's events that were triggered since the last iteration of the loop
@@ -28,8 +30,6 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-
-        window.clear(sf::Color::Green);
 
         singlePendulum.render(window);
 

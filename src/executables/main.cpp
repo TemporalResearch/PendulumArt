@@ -7,6 +7,7 @@
 
 #include <dop/render/scenes/SinglePendulum.h>
 #include "dop/render/scenes/DoublePendulum.h"
+#include "dop/render/scenes/NPendulum.h"
 
 int main()
 {
@@ -17,7 +18,7 @@ int main()
             {-1, -1},
             {2, 2})));
 
-    dop::DoublePendulum singlePendulum(10);
+    dop::NPendulum pendulum(5, 10);
 
 //    window.clear(sf::Color::Green);
     while (window.isOpen())
@@ -31,7 +32,7 @@ int main()
                 window.close();
         }
 
-        singlePendulum.render(window);
+        pendulum.render(window);
 
         window.display();
     }

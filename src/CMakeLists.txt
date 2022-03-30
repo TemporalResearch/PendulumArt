@@ -2,6 +2,8 @@ add_library(dop_src_all
         dop/render/scenes/SinglePendulum.cpp
         dop/render/shapes/CenteredCircle.cpp
         dop/render/shapes/Line.cpp
+        dop/math/Matrix2_2f.cpp
+        dop/math/RotationMatrix.cpp
         )
 target_link_libraries(dop_src_all
         PUBLIC libtr_lang::libtr_lang

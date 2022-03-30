@@ -3,6 +3,8 @@
 //
 
 #include "SinglePendulum.h"
+#include <dop/math/RotationMatrix.h>
+#include <cmath>
 
 void dop::SinglePendulum::render(sf::RenderWindow &window)
 {
@@ -10,17 +12,22 @@ void dop::SinglePendulum::render(sf::RenderWindow &window)
 
     {
         endRotation_ += 0.1;
-        end_.rotate(endRotation_);
+
+        auto endPosition =
+                createRotationMatrix(endRotation_ * (M_PI / 180.0))
+                .multiply({0, 0.25});
+        end_.setPosition(endPosition);
         end_.render(window);
+        rod_.setPosition({0, 0}, endPosition);
     }
 
     window.draw(rod_);
 }
 
 dop::SinglePendulum::SinglePendulum()
-    : pivot_(0.04)
-    , end_(0.04, {0, -0.5})
-    , rod_{{0, 0}, {0, 0.5}}
+    : pivot_(0.02)
+    , end_(0.02)
+    , rod_{{0, 0}, {0, 0.25}}
 {
     pivot_.setPosition({0, 0});
     pivot_.setColor(sf::Color::Black);

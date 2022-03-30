@@ -17,17 +17,15 @@ namespace dop
         void setPosition(sf::Vector2f start, sf::Vector2f end);
         void setColor(sf::Color color);
 
-        void setRotation(float rotation);
-
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "google-explicit-constructor"
         operator sf::VertexArray()
         {
-            return _lineRenderable;
+            return lineRenderable_;
         }
 #pragma clang diagnostic pop
 
     private:
-        sf::VertexArray _lineRenderable;
+        sf::VertexArray lineRenderable_;
     };
 }

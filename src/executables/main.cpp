@@ -19,7 +19,15 @@ int main()
             {-1, -1},
             {2, 2})));
 
-    dop::NPendulum pendulum(5);
+//    float baseRotation = 0.1f;
+    float baseRotation = 8.4f;
+    dop::NPendulum pendulum({
+        baseRotation,
+        baseRotation * 1.9f,
+        baseRotation * 0.8f,
+        baseRotation * 1.7f,
+        baseRotation * 0.6f,
+    });
 //    dop::BouncingLineLegacy pendulum(5, 2);
 
 //    window.clear(sf::Color::Green);

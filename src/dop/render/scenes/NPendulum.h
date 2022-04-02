@@ -14,16 +14,16 @@ namespace dop
     {
     public:
 
-        explicit NPendulum(int noOfPivots,
+        explicit NPendulum(std::vector<float> pivotRotationSpeeds,
                            std::function<std::pair<sf::Vector2f, sf::Vector2f>(
                                    sf::Vector2f initialPosition, sf::Vector2f endPosition)> rodPostProcess =
-                                           [](auto iP, auto eP) { return std::pair<sf::Vector2f, sf::Vector2f>{iP, eP}; });
+                           [](auto iP, auto eP) { return std::pair<sf::Vector2f, sf::Vector2f>{iP, eP}; });
 
         void render(sf::RenderWindow &window) override;
     private:
         struct Rod
         {
-            explicit Rod();
+            explicit Rod(float rotationSpeed);
 
             std::pair<sf::Vector2f, float>
             render(sf::RenderWindow &window, const sf::Vector2f &initialPosition, float initialRotation,
@@ -32,6 +32,7 @@ namespace dop
             dop::CenteredCircle pivot_;
             dop::Line line_;
 
+            float rotationSpeed_{0};
             float rotation_{};
         };
 

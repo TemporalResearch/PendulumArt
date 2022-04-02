@@ -6,23 +6,26 @@
 #include <dop/math/VectorUtils.hpp>
 #include <dop/math/RotationMatrix.h>
 
-#define ROTATION_SPEED 0.1f
-//#define ROTATION_SPEED 8.3f
 #define ROD_LENGTH 0.15f
 
-dop::NPendulum::NPendulum(int noOfPivots,
+dop::NPendulum::NPendulum(std::vector<float> pivotRotationSpeeds,
                           std::function<std::pair<sf::Vector2f, sf::Vector2f>(sf::Vector2f initialPosition,
                                                                               sf::Vector2f endPosition)> rodPostProcess)
 {
-    for (int i = 0; i < noOfPivots; i++)
+//    for (int i = 0; i < pivotRotationSpeeds; i++)
+//    {
+//        pivots_.emplace_back();
+//    }
+
+    for (const auto& pivotRotationSpeed : pivotRotationSpeeds)
     {
-        pivots_.emplace_back();
+        pivots_.emplace_back(pivotRotationSpeed);
     }
 }
 
 void dop::NPendulum::render(sf::RenderWindow &window)
 {
-    window.clear(sf::Color::Black);
+//    window.clear(sf::Color::Black);
 
     sf::Vector2f previousPosition(0, 0);
     float rotation{0};
@@ -39,22 +42,23 @@ void dop::NPendulum::render(sf::RenderWindow &window)
     }
 }
 
-dop::NPendulum::Rod::Rod()
+dop::NPendulum::Rod::Rod(float rotationSpeed)
     : pivot_{0.01}
     , line_{{0, 0}, {0, 0.25}}
+    , rotationSpeed_{rotationSpeed}
     , rotation_{0}
 {
     pivot_.setPosition({0, 0});
-    pivot_.setColor(sf::Color(0, 255, 0, 100));
+    pivot_.setColor(sf::Color(0, 255, 0, 10));
 
-    line_.setColor(sf::Color(255, 255, 255, 100));
+    line_.setColor(sf::Color(255, 255, 255, 10));
 }
 
 std::pair<sf::Vector2f, float>
 dop::NPendulum::Rod::render(sf::RenderWindow &window, const sf::Vector2f &initialPosition, float initialRotation,
                             bool display)
 {
-    rotation_ += ROTATION_SPEED;
+    rotation_ += rotationSpeed_;
 
     auto actualRotation = rotation_ + initialRotation;
     auto rotationPosition =
@@ -69,7 +73,7 @@ dop::NPendulum::Rod::render(sf::RenderWindow &window, const sf::Vector2f &initia
 //        pivot_.setPosition({actualPosition.x, 0});
 //    }
 
-    pivot_.render(window);
+//    pivot_.render(window);
     window.draw(line_);
     if (display)
     {

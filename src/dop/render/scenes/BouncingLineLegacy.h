@@ -10,11 +10,11 @@
 
 namespace dop
 {
-    class BouncingLine: public dop::Scene
+    class BouncingLineLegacy: public dop::Scene
     {
     public:
 
-        explicit BouncingLine(int noOfPivots, float rodMultiplier);
+        explicit BouncingLineLegacy(int noOfPivots, float rodMultiplier);
 
         void render(sf::RenderWindow &window) override;
     private:

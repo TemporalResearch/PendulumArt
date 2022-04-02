@@ -2,7 +2,7 @@
 // Created by Michael Lynch on 30/03/2022.
 //
 
-#include "BouncingLine.h"
+#include "BouncingLineLegacy.h"
 #include <dop/math/VectorUtils.hpp>
 #include <dop/math/RotationMatrix.h>
 
@@ -10,7 +10,7 @@
 //#define ROTATION_SPEED 8.3f
 #define ROD_LENGTH 0.25f
 
-dop::BouncingLine::BouncingLine(int noOfPivots, float rodMultiplier)
+dop::BouncingLineLegacy::BouncingLineLegacy(int noOfPivots, float rodMultiplier)
 {
     for (int i = 0; i < noOfPivots; i++)
     {
@@ -19,7 +19,7 @@ dop::BouncingLine::BouncingLine(int noOfPivots, float rodMultiplier)
     }
 }
 
-void dop::BouncingLine::render(sf::RenderWindow &window)
+void dop::BouncingLineLegacy::render(sf::RenderWindow &window)
 {
 //    window.clear(sf::Color::Black);
 
@@ -52,7 +52,7 @@ void dop::BouncingLine::render(sf::RenderWindow &window)
     }
 }
 
-dop::BouncingLine::Rod::Rod(int rodMultiplier)
+dop::BouncingLineLegacy::Rod::Rod(int rodMultiplier)
         : pivot_{0.01}
         , line_{{0, 0}, {0, 0.25}}
         , rotation_{0}
@@ -65,7 +65,7 @@ dop::BouncingLine::Rod::Rod(int rodMultiplier)
 }
 
 sf::Vector2f
-dop::BouncingLine::Rod::render(sf::RenderWindow &window, const sf::Vector2f &initialPosition, bool display, float yPos)
+dop::BouncingLineLegacy::Rod::render(sf::RenderWindow &window, const sf::Vector2f &initialPosition, bool display, float yPos)
 {
     rotation_ += ROTATION_SPEED * rodMultiplier_;
 

@@ -8,7 +8,7 @@
 #include <dop/render/scenes/SinglePendulum.h>
 #include "dop/render/scenes/DoublePendulum.h"
 #include "dop/render/scenes/NPendulum.h"
-#include "dop/render/scenes/BouncingLineLegacy.h"
+#include "dop/render/scenes/BouncingLine.h"
 
 int main()
 {
@@ -19,16 +19,22 @@ int main()
             {-1, -1},
             {2, 2})));
 
-//    float baseRotation = 0.1f;
-    float baseRotation = 8.4f;
-    dop::NPendulum pendulum({
+    float baseRotation = 0.1f;
+//    float baseRotation = 8.4f;
+//    dop::NPendulum pendulum({
+//        baseRotation,
+//        baseRotation * 1.9f,
+//        baseRotation * 0.8f,
+//        baseRotation * 1.7f,
+//        baseRotation * 0.6f,
+//    });
+    dop::BouncingLine pendulum({
         baseRotation,
         baseRotation * 1.9f,
         baseRotation * 0.8f,
         baseRotation * 1.7f,
         baseRotation * 0.6f,
-    });
-//    dop::BouncingLineLegacy pendulum(5, 2);
+});
 
 //    window.clear(sf::Color::Green);
     while (window.isOpen())
